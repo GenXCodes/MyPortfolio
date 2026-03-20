@@ -26,8 +26,12 @@
         { name: 'React / Next.js', level: 80, icon: '⚛️' },
         { name: 'Node.js / Express', level: 78, icon: '🟢' },
         { name: 'PostgreSQL / Supabase', level: 75, icon: '🗄️' },
+        { name: 'MySQL / MariaDB', level: 80, icon: '🐬' },
         { name: 'TailwindCSS', level: 90, icon: '🎨' },
         { name: 'REST APIs / GraphQL', level: 82, icon: '🔌' },
+        { name: 'PHP', level: 80, icon: '🐘' },
+        { name: 'OOP', level: 85, icon: '🧱' },
+        { name: 'MVC / MVP', level: 85, icon: '🏗️' },
       ]
     },
     {
@@ -43,6 +47,10 @@
         { name: 'RMM Tools (NinjaOne)', level: 82, icon: '🛡️' },
         { name: 'PowerShell / Scripting', level: 80, icon: '💻' },
         { name: 'SLA Management', level: 92, icon: '📋' },
+        { name: 'SCCM', level: 85, icon: '📦' },
+        { name: 'Software Troubleshooting', level: 90, icon: '🛠️' },
+        { name: 'Hardware Troubleshooting', level: 90, icon: '🔧' },
+        { name: 'Re-imaging', level: 85, icon: '💿' },
       ]
     },
     {
@@ -52,11 +60,8 @@
       skills: [
         { name: 'OpenAI / GPT-4o API', level: 88, icon: '🤖' },
         { name: 'N8N / Make (Integromat)', level: 85, icon: '⚙️' },
-        { name: 'LangChain / RAG', level: 78, icon: '🔗' },
-        { name: 'Zapier Automations', level: 82, icon: '⚡' },
         { name: 'Python / FastAPI', level: 75, icon: '🐍' },
         { name: 'Prompt Engineering', level: 90, icon: '✏️' },
-        { name: 'Vector DBs / Pinecone', level: 72, icon: '📦' },
         { name: 'AI Agent Workflows', level: 80, icon: '🕸️' },
       ]
     },
@@ -66,6 +71,7 @@
     'VS Code', 'Git / GitHub', 'Docker', 'Vercel', 'Cloudflare',
     'Figma', 'Postman', 'Linux', 'Notion', 'Slack', 'Jira',
     'Microsoft 365', 'Azure', 'Supabase', 'Stripe', 'N8N',
+    'Alpine.js', 'Apache', 'Nginx',
   ]
 
   let current = $derived(categories[activeCategory])
@@ -96,28 +102,12 @@
         <div class="skill-list">
           {#each current.skills as skill, i}
             <div class="skill-row" style="animation-delay: {i * 0.05}s">
-              <div class="skill-head">
-                <span class="skill-name">
-                  <span class="skill-icon">{skill.icon}</span>
-                  {skill.name}
-                </span>
-                <span class="skill-pct" style="color: {current.color}">{skill.level}%</span>
-              </div>
-              <div class="bar-track">
-                <div
-                  class="bar-fill"
-                  style="width: {visible ? skill.level : 0}%; background: {current.color}; transition-delay: {i * 0.06 + 0.3}s"
-                ></div>
-              </div>
+              <span class="skill-name">
+                <span class="skill-icon">{skill.icon}</span>
+                {skill.name}
+              </span>
             </div>
           {/each}
-        </div>
-
-        <!-- Proficiency legend -->
-        <div class="legend">
-          <span class="legend-item"><span class="l-dot" style="background: var(--accent2)"></span>Expert (90%+)</span>
-          <span class="legend-item"><span class="l-dot" style="background: var(--accent)"></span>Proficient (75–89%)</span>
-          <span class="legend-item"><span class="l-dot" style="background: var(--accent3)"></span>Intermediate (60–74%)</span>
         </div>
       </div>
     </div>
@@ -208,25 +198,27 @@
   }
 
   .skill-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
   }
 
   .skill-row {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
     opacity: 0;
     animation: slideIn 0.4s ease forwards;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .skill-row:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-bright);
   }
 
   section.visible .skill-row { opacity: 1; }
-
-  .skill-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.4rem;
-  }
 
   .skill-name {
     font-family: var(--mono);
@@ -234,70 +226,11 @@
     color: var(--text-bright);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     letter-spacing: 0.02em;
   }
 
-  .skill-icon { font-size: 0.9rem; }
-
-  .skill-pct {
-    font-family: var(--display);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-  }
-
-  .bar-track {
-    height: 4px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 100px;
-    overflow: hidden;
-  }
-
-  .bar-fill {
-    height: 100%;
-    border-radius: 100px;
-    width: 0;
-    transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-  }
-
-  .bar-fill::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: inherit;
-    box-shadow: 0 0 6px currentColor;
-  }
-
-  /* Legend */
-  .legend {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--mono);
-    font-size: 0.62rem;
-    color: var(--text-dim);
-    letter-spacing: 0.04em;
-  }
-
-  .l-dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-  }
+  .skill-icon { font-size: 1rem; }
 
   /* Tools section */
   .tools-section {
