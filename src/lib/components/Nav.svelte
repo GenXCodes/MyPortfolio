@@ -35,7 +35,7 @@
 <nav class:scrolled>
   <button class="logo" onclick={() => scrollTo('home')} aria-label="Go to top">
     <span class="logo-bracket">[</span>
-    <span class="logo-name">YOUR_NAME</span>
+    <span class="logo-name">RECKIE</span>
     <span class="logo-bracket">]</span>
   </button>
 

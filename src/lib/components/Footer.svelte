@@ -6,7 +6,7 @@
   <div class="container">
     <div class="left">
       <span class="logo">
-        <span class="bracket">[</span>YOUR_NAME<span class="bracket">]</span>
+        <span class="bracket">[</span>RECKIE<span class="bracket">]</span>
       </span>
       <p class="tagline">Building systems that just work.</p>
     </div>
@@ -23,7 +23,7 @@
     </div>
 
     <div class="right">
-      <p class="copy">© {year} [Your Name]. All rights reserved.</p>
+      <p class="copy">© {year} Reckie Degollacion. All rights reserved.</p>
     </div>
   </div>
 

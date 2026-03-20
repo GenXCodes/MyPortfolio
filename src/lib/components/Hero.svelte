@@ -178,8 +178,8 @@
       </p>
 
       <h1 class="hero-name">
-        YOUR
-        <span class="name-accent">NAME</span>
+        RECKIE
+        <span class="name-accent">DEGOLLACION</span>
         <span class="name-dot">.</span>
       </h1>
 
